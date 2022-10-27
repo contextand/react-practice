@@ -15,7 +15,7 @@ const TemplateBodyTopSearch = () => {
 export default TemplateBodyTopSearch;
 
 const S = {
-  SearchBox: styled.div`
+  SearchBox: styled.form`
     display: flex;
     align-items: center;
     justify-content: flex-start;
