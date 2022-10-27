@@ -5,6 +5,7 @@ const theme = {
   middleGrey: '#717171',
   deepGrey: '#222222',
   hoverGrey: '#DBDBDB',
+  mainColor: '#5551FF',
 };
 
 export default theme;

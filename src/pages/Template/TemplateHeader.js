@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import theme from '../../styles/theme';
 
 const TemplateHeader = () => {
   return (
@@ -19,7 +20,7 @@ const S = {
     justify-content: center;
     align-items: center;
     height: 300px;
-    background: dodgerblue;
+    background: ${theme.mainColor};
   `,
   Title: styled.h1`
     color: #fff;
@@ -32,7 +33,7 @@ const S = {
     margin-top: 25px;
     font-weight: 900;
     font-size: 20px;
-    color: dodgerblue;
+    color: ${theme.mainColor};
     background: white;
     border-radius: 5px;
     cursor: pointer;
