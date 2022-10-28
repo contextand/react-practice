@@ -11,13 +11,12 @@ const TemplateBodyContents = () => {
       .get()
       .then(docs => {
         docs.forEach(doc => {
-          templates.push(doc.data());
+          setTemplates(cur => [...cur, doc.data()]);
         });
       });
   }, []);
 
-  console.log(templates);
-  // templates.shift();
+  templates.shift();
 
   return (
     <S.ListBox>
