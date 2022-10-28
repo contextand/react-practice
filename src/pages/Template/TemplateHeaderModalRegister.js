@@ -17,14 +17,20 @@ const TemplateHeaderModalRegister = ({ handleModal }) => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    db.collection('Templates')
-      .add({
+    // id 값
+    const templateRef = db.collection('Templates').doc();
+    templateRef
+      .set({
+        id: templateRef.id, // doc, id 넣어주기
         keyword: keyword,
         text: text,
       })
       .then(docRef => {
         console.log(docRef.id);
-        db.collection('Keyword').add({ keyword: keyword });
+        db.collection('Keyword').doc(keyword).set({ keyword: keyword });
+        // 키워드 중복 문제
+        // 도큐먼트 아이디를 키워드로, set을 사용
+        // count 추가 filedValue.increasment
         handleModal();
       })
       .catch(error => {
