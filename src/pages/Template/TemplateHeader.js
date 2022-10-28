@@ -1,12 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 import theme from '../../styles/theme';
+import TemplateHeaderModal from './TemplateHeaderModal';
 
 const TemplateHeader = () => {
   return (
     <S.Wrap>
       <S.Title>뭐라고 쓸지 고민될 때</S.Title>
       <S.RegisterBtn>나도 템플릿 등록하기</S.RegisterBtn>
+      <TemplateHeaderModal />
     </S.Wrap>
   );
 };
