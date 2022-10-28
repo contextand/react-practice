@@ -2,10 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 import TemplateHeaderModalRegister from './TemplateHeaderModalRegister';
 
-const TemplateHeaderModal = () => {
+const TemplateHeaderModal = ({ handleModal }) => {
   return (
     <>
-      <S.ModalBack />
+      <S.ModalBack onClick={handleModal} />
       <S.ModalBox>
         <TemplateHeaderModalRegister />
       </S.ModalBox>

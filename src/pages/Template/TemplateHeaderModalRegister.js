@@ -7,19 +7,29 @@ const TemplateHeaderModalRegister = () => {
   const [text, setText] = useState('');
 
   const handleData = e => {
-    console.log(e.target.value);
+    if (e.target.name === 'keyword') {
+      setKeyword(e.target.value);
+    } else if (e.target.name === 'text') {
+      setText(e.target.value);
+    }
+  };
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    console.log(keyword, text);
   };
 
   return (
-    <S.FormWrap>
+    <S.FormWrap onSubmit={handleSubmit}>
       <S.Title>템플릿 등록하기</S.Title>
       <S.KeywordInput
         type="keyword"
+        name="keyword"
         requried
         value={keyword}
         onChange={handleData}
       />
-      <S.TextInput onChange={handleData} />
+      <S.TextInput name="text" requried value={text} onChange={handleData} />
       <S.SubmitBtn>등록하기</S.SubmitBtn>
     </S.FormWrap>
   );

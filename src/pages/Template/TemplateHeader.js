@@ -1,14 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import theme from '../../styles/theme';
 import TemplateHeaderModal from './TemplateHeaderModal';
 
 const TemplateHeader = () => {
+  const [isModal, setIsModal] = useState(false);
+
+  const handleModal = () => {
+    setIsModal(!isModal);
+  };
+
   return (
     <S.Wrap>
       <S.Title>뭐라고 쓸지 고민될 때</S.Title>
-      <S.RegisterBtn>나도 템플릿 등록하기</S.RegisterBtn>
-      <TemplateHeaderModal />
+      <S.RegisterBtn onClick={handleModal}>나도 템플릿 등록하기</S.RegisterBtn>
+      {isModal && <TemplateHeaderModal handleModal={handleModal} />}
     </S.Wrap>
   );
 };
