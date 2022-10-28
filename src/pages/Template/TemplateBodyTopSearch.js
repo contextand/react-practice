@@ -1,24 +1,45 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FaSearch } from 'react-icons/fa';
+import { db } from '../../config';
 import styled from 'styled-components';
 import theme from '../../styles/theme';
 
 const TemplateBodyTopSearch = () => {
   const [isKeyword, setIsKeyword] = useState(false);
+  const [keywords, setKeywords] = useState([]);
+  const [selectedKeyword, setSelectedKeyword] = useState('템플릿 선택');
 
   const handleKeyword = e => {
     setIsKeyword(cur => !cur);
   };
 
+  const selectKeyword = e => {
+    setSelectedKeyword(e.target.innerText);
+  };
+
+  useEffect(() => {
+    db.collection('Keyword')
+      .get()
+      .then(docs => {
+        docs.forEach(doc => {
+          setKeywords(cur => [...cur, doc.data()]);
+        });
+      });
+  }, []);
+
   return (
     <S.SearchBox onClick={handleKeyword}>
       <FaSearch className="icon" />
-      <S.Text>템플릿 검색</S.Text>
+      <S.Text>{selectedKeyword}</S.Text>
       {isKeyword && (
         <S.KeywordBox>
-          <S.KeywordList>리스트</S.KeywordList>
-          <S.KeywordList>리스트</S.KeywordList>
-          <S.KeywordList>리스트</S.KeywordList>
+          {keywords.map(word => {
+            return (
+              <S.KeywordList onClick={selectKeyword} key={word.id}>
+                {word.keyword}
+              </S.KeywordList>
+            );
+          })}
         </S.KeywordBox>
       )}
     </S.SearchBox>
