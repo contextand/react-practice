@@ -1,54 +1,37 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { db } from '../../config';
 import theme from '../../styles/theme';
 
 const TemplateBodyContents = () => {
+  const [templates, setTemplates] = useState([{}]);
+
+  useEffect(() => {
+    db.collection('Templates')
+      .get()
+      .then(docs => {
+        docs.forEach(doc => {
+          templates.push(doc.data());
+        });
+      });
+  }, []);
+
+  console.log(templates);
+  // templates.shift();
+
   return (
     <S.ListBox>
-      <S.ListItem>
-        <S.Item>
-          <S.Title>이렇게 감사인사</S.Title>
-          <S.Text>
-            감사인사를 이렇게 적으면 여기 이렇게 적힌다. 다른 것은 없다. 여러
-            줄을 쓴다면 이렇게 적힌다. 아래에 이렇게 따라 온다. 계속 따라올
-            것이다.
-          </S.Text>
-          <S.Copy>복사하기 : 0</S.Copy>
-        </S.Item>
-      </S.ListItem>
-      <S.ListItem>
-        <S.Item>
-          <S.Title>이렇게 감사인사</S.Title>
-          <S.Text>
-            감사인사를 이렇게 적으면 여기 이렇게 적힌다. 다른 것은 없다. 여러
-            줄을 쓴다면 이렇게 적힌다. 아래에 이렇게 따라 온다. 계속 따라올
-            것이다.
-          </S.Text>
-          <S.Copy>복사하기 : 0</S.Copy>
-        </S.Item>
-      </S.ListItem>
-      <S.ListItem>
-        <S.Item>
-          <S.Title>이렇게 감사인사</S.Title>
-          <S.Text>
-            감사인사를 이렇게 적으면 여기 이렇게 적힌다. 다른 것은 없다. 여러
-            줄을 쓴다면 이렇게 적힌다. 아래에 이렇게 따라 온다. 계속 따라올
-            것이다.
-          </S.Text>
-          <S.Copy>복사하기 : 0</S.Copy>
-        </S.Item>
-      </S.ListItem>
-      <S.ListItem>
-        <S.Item>
-          <S.Title>이렇게 감사인사</S.Title>
-          <S.Text>
-            감사인사를 이렇게 적으면 여기 이렇게 적힌다. 다른 것은 없다. 여러
-            줄을 쓴다면 이렇게 적힌다. 아래에 이렇게 따라 온다. 계속 따라올
-            것이다.
-          </S.Text>
-          <S.Copy>복사하기 : 0</S.Copy>
-        </S.Item>
-      </S.ListItem>
+      {templates.map(template => {
+        return (
+          <S.ListItem key={Math.random()}>
+            <S.Item>
+              <S.Title>{template.keyword}</S.Title>
+              <S.Text>{template.text}</S.Text>
+              <S.Copy>복사하기 : 0</S.Copy>
+            </S.Item>
+          </S.ListItem>
+        );
+      })}
     </S.ListBox>
   );
 };

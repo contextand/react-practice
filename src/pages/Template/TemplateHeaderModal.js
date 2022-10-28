@@ -7,7 +7,7 @@ const TemplateHeaderModal = ({ handleModal }) => {
     <>
       <S.ModalBack onClick={handleModal} />
       <S.ModalBox>
-        <TemplateHeaderModalRegister />
+        <TemplateHeaderModalRegister handleModal={handleModal} />
       </S.ModalBox>
     </>
   );

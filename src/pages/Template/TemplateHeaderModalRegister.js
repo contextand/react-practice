@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import theme from '../../styles/theme';
+import { db } from '../../config';
 
-const TemplateHeaderModalRegister = () => {
+const TemplateHeaderModalRegister = ({ handleModal }) => {
   const [keyword, setKeyword] = useState('');
   const [text, setText] = useState('');
 
@@ -16,7 +17,19 @@ const TemplateHeaderModalRegister = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    console.log(keyword, text);
+    db.collection('Templates')
+      .add({
+        keyword: keyword,
+        text: text,
+      })
+      .then(docRef => {
+        console.log(docRef.id);
+        db.collection('Keyword').add({ keyword: keyword });
+        handleModal();
+      })
+      .catch(error => {
+        console.log(error);
+      });
   };
 
   return (
@@ -71,5 +84,6 @@ const S = {
     font-weight: 500;
     color: white;
     background: ${theme.mainColor};
+    cursor: pointer;
   `,
 };
