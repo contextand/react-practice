@@ -4,10 +4,10 @@ import theme from '../../styles/theme';
 import TemplateHeaderModal from './TemplateHeaderModal';
 
 const TemplateHeader = () => {
-  const [isModal, setIsModal] = useState(false);
+  const [isShowModal, setIsShowModal] = useState(false);
 
   const handleModal = () => {
-    setIsModal(!isModal);
+    setIsShowModal(!isShowModal);
   };
   // 모달, handleModal 의미 모호, 핸들링. 모달을 무엇을 핸들하나..
   // 토글 모달. 껏다 켰다. 명시적 단어
@@ -18,7 +18,7 @@ const TemplateHeader = () => {
     <S.Wrap>
       <S.Title>뭐라고 쓸지 고민될 때</S.Title>
       <S.RegisterBtn onClick={handleModal}>나도 템플릿 등록하기</S.RegisterBtn>
-      {isModal && <TemplateHeaderModal handleModal={handleModal} />}
+      {isShowModal && <TemplateHeaderModal handleModal={handleModal} />}
     </S.Wrap>
   );
 };
