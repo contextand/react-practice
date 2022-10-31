@@ -54,7 +54,7 @@ const S = {
     position: relative;
     align-items: center;
     justify-content: flex-start;
-    width: 300px;
+    width: 32%;
     padding: 10px 20px;
     border: 1.5px solid ${theme.mainColor};
     cursor: pointer;
