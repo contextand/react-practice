@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
 import { db } from '../../config';
+import styled from 'styled-components';
 import theme from '../../styles/theme';
 
 const TemplateBodyContents = () => {

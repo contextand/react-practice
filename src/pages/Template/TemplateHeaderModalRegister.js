@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import theme from '../../styles/theme';
 import { db } from '../../config';
 
-const TemplateHeaderModalRegister = ({ handleModal }) => {
+const TemplateHeaderModalRegister = ({ handleOpenModal }) => {
   const [keyword, setKeyword] = useState('');
   const [text, setText] = useState('');
 
@@ -17,7 +17,6 @@ const TemplateHeaderModalRegister = ({ handleModal }) => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    // id 값
     const templateRef = db.collection('Templates').doc();
     templateRef
       .set({
@@ -26,12 +25,11 @@ const TemplateHeaderModalRegister = ({ handleModal }) => {
         text: text,
       })
       .then(docRef => {
-        console.log(docRef.id);
         db.collection('Keyword').doc(keyword).set({ keyword: keyword });
         // 키워드 중복 문제
         // 도큐먼트 아이디를 키워드로, set을 사용
         // count 추가 filedValue.increasment
-        handleModal();
+        handleOpenModal();
       })
       .catch(error => {
         console.log(error);

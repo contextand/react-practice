@@ -6,7 +6,7 @@ import TemplateHeaderModal from './TemplateHeaderModal';
 const TemplateHeader = () => {
   const [isShowModal, setIsShowModal] = useState(false);
 
-  const handleModal = () => {
+  const handleOpenModal = () => {
     setIsShowModal(!isShowModal);
   };
   // 모달, handleModal 의미 모호, 핸들링. 모달을 무엇을 핸들하나..
@@ -17,8 +17,10 @@ const TemplateHeader = () => {
   return (
     <S.Wrap>
       <S.Title>뭐라고 쓸지 고민될 때</S.Title>
-      <S.RegisterBtn onClick={handleModal}>나도 템플릿 등록하기</S.RegisterBtn>
-      {isShowModal && <TemplateHeaderModal handleModal={handleModal} />}
+      <S.RegisterBtn onClick={handleOpenModal}>
+        나도 템플릿 등록하기
+      </S.RegisterBtn>
+      {isShowModal && <TemplateHeaderModal handleOpenModal={handleOpenModal} />}
     </S.Wrap>
   );
 };

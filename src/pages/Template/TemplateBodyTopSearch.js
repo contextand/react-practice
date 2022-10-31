@@ -5,12 +5,12 @@ import styled from 'styled-components';
 import theme from '../../styles/theme';
 
 const TemplateBodyTopSearch = () => {
-  const [isKeyword, setIsKeyword] = useState(false);
+  const [isOpenKeyword, setIsOpenKeyword] = useState(false);
   const [keywords, setKeywords] = useState([]);
   const [selectedKeyword, setSelectedKeyword] = useState('템플릿 선택');
 
   const handleKeyword = e => {
-    setIsKeyword(cur => !cur);
+    setIsOpenKeyword(cur => !cur);
   };
 
   const selectKeyword = e => {
@@ -31,7 +31,7 @@ const TemplateBodyTopSearch = () => {
     <S.SearchBox onClick={handleKeyword}>
       <FaSearch className="icon" />
       <S.Text>{selectedKeyword}</S.Text>
-      {isKeyword && (
+      {isOpenKeyword && (
         <S.KeywordBox>
           {keywords.map(word => {
             return (

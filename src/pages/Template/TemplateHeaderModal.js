@@ -2,12 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 import TemplateHeaderModalRegister from './TemplateHeaderModalRegister';
 
-const TemplateHeaderModal = ({ handleModal }) => {
+const TemplateHeaderModal = ({ handleOpenModal }) => {
   return (
     <>
-      <S.ModalBack onClick={handleModal} />
+      <S.ModalBack onClick={handleOpenModal} />
       <S.ModalBox>
-        <TemplateHeaderModalRegister handleModal={handleModal} />
+        <TemplateHeaderModalRegister handleOpenModal={handleOpenModal} />
       </S.ModalBox>
     </>
   );
