@@ -72,9 +72,10 @@ const S = {
     position: absolute;
     top: 50px;
     left: 0;
-    width: 300px;
+    width: 100%;
     background: #fff;
     border: 1.5px solid ${theme.mainColor};
+    z-index: 3;
   `,
   KeywordList: styled.li`
     padding: 10px 0 10px 40px;

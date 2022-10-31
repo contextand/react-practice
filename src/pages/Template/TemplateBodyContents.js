@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { db } from '../../config';
+import { MdOutlineCancel } from 'react-icons/md';
 import styled from 'styled-components';
 import theme from '../../styles/theme';
 
@@ -31,25 +32,43 @@ const TemplateBodyContents = () => {
   useEffect(() => {
     const getTemplates = async () => {
       const templateRef = db.collection('Templates');
-      console.log('templateRef : ', templateRef);
       const templateSnap = await templateRef.get();
-      console.log('templateSnap : ', templateSnap);
-      const newTemplate = templateSnap.docs.map(doc => {
-        console.log(doc);
+      templateSnap.docs.map(doc => {
+        setTemplates(cur => [...cur, { ...doc.data() }]);
       });
     };
     getTemplates();
   }, []);
 
-  // console.log(templates);
+  console.log(templates);
   templates.shift();
+
+  const deleteTemplate = id => {
+    db.collection('Templates')
+      .doc(id)
+      .delete()
+      .then(() => {
+        console.log('Document successfully deleted!');
+        window.location.reload();
+      })
+      .catch(error => {
+        console.log('Error removing document : ', error);
+      });
+  };
 
   return (
     <S.ListBox>
       {templates.map(template => {
         return (
-          <S.ListItem key={Math.random()}>
+          <S.ListItem key={template.id}>
             <S.Item>
+              <MdOutlineCancel
+                className="cancelIcon"
+                size="20px"
+                onClick={() => {
+                  deleteTemplate(template.id);
+                }}
+              />
               <S.Title>{template.keyword}</S.Title>
               <S.Text>{template.text}</S.Text>
               <S.Copy>복사하기 : 0</S.Copy>
@@ -75,8 +94,16 @@ const S = {
     margin-bottom: 20px;
   `,
   Item: styled.div`
+    position: relative;
     padding: 30px 20px;
     border: 1.5px solid ${theme.mainColor};
+    .cancelIcon {
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      color: ${theme.mainColor};
+      cursor: pointer;
+    }
   `,
   Title: styled.p`
     margin-bottom: 20px;

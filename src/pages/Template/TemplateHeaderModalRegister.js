@@ -30,6 +30,7 @@ const TemplateHeaderModalRegister = ({ handleOpenModal }) => {
         // 도큐먼트 아이디를 키워드로, set을 사용
         // count 추가 filedValue.increasment
         handleOpenModal();
+        window.location.reload();
       })
       .catch(error => {
         console.log(error);
