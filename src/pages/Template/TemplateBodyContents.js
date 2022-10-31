@@ -3,6 +3,7 @@ import { db } from '../../config';
 import { MdOutlineCancel } from 'react-icons/md';
 import styled from 'styled-components';
 import theme from '../../styles/theme';
+import { isConstructorDeclaration } from 'typescript';
 
 const TemplateBodyContents = () => {
   const [templates, setTemplates] = useState([{}]);
@@ -40,8 +41,8 @@ const TemplateBodyContents = () => {
     getTemplates();
   }, []);
 
-  console.log(templates);
-  templates.shift();
+  // templates.shift();
+  console.log(templates.length);
 
   const deleteTemplate = id => {
     db.collection('Templates')
@@ -58,24 +59,25 @@ const TemplateBodyContents = () => {
 
   return (
     <S.ListBox>
-      {templates.map(template => {
-        return (
-          <S.ListItem key={template.id}>
-            <S.Item>
-              <MdOutlineCancel
-                className="cancelIcon"
-                size="20px"
-                onClick={() => {
-                  deleteTemplate(template.id);
-                }}
-              />
-              <S.Title>{template.keyword}</S.Title>
-              <S.Text>{template.text}</S.Text>
-              <S.Copy>복사하기 : 0</S.Copy>
-            </S.Item>
-          </S.ListItem>
-        );
-      })}
+      {templates &&
+        templates.map(template => {
+          return (
+            <S.ListItem key={template.id}>
+              <S.Item>
+                <MdOutlineCancel
+                  className="cancelIcon"
+                  size="20px"
+                  onClick={() => {
+                    deleteTemplate(template.id);
+                  }}
+                />
+                <S.Title>{template.keyword}</S.Title>
+                <S.Text>{template.text}</S.Text>
+                <S.Copy>복사하기 : 0</S.Copy>
+              </S.Item>
+            </S.ListItem>
+          );
+        })}
     </S.ListBox>
   );
 };
