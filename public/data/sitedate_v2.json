@@ -1,0 +1,49 @@
+{
+  "hospital": {
+    "logo_url": "",
+    "name": "",
+    "TEL": "",
+    "FAX": "",
+    "e_mail": "",
+    "address": "",
+    "business_number": "",
+    "time": "",
+    "sns_link": "",
+    "intro_text": "",
+    "main_image": ""
+  },
+  "menuList": {
+    "title": ""
+  },
+  "subject": {
+    "title": "",
+    "image_url": "",
+    "link_url": ""
+  },
+  "staff": {
+    "wonjang": {
+      "name": "",
+      "image_url": "",
+      "main_text": "",
+      "content": "",
+      "promise": {
+        "title": "",
+        "text": ""
+      }
+    }
+  },
+  "facilities": {
+    "image_name": "",
+    "image_url": ""
+  },
+  "review": {
+    "users": {
+      "user": {
+        "date": "",
+        "star": "",
+        "comment": "",
+        "user_name": ""
+      }
+    }
+  }
+}

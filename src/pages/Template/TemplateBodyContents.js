@@ -42,7 +42,7 @@ const TemplateBodyContents = () => {
   }, []);
 
   // templates.shift();
-  console.log(templates.length);
+  console.log(templates);
 
   const deleteTemplate = id => {
     db.collection('Templates')
@@ -57,27 +57,28 @@ const TemplateBodyContents = () => {
       });
   };
 
+  console.log(templates);
+
   return (
     <S.ListBox>
-      {templates &&
-        templates.map(template => {
-          return (
-            <S.ListItem key={template.id}>
-              <S.Item>
-                <MdOutlineCancel
-                  className="cancelIcon"
-                  size="20px"
-                  onClick={() => {
-                    deleteTemplate(template.id);
-                  }}
-                />
-                <S.Title>{template.keyword}</S.Title>
-                <S.Text>{template.text}</S.Text>
-                <S.Copy>복사하기 : 0</S.Copy>
-              </S.Item>
-            </S.ListItem>
-          );
-        })}
+      {templates.map(template => {
+        return (
+          <S.ListItem key={template.id}>
+            <S.Item>
+              <MdOutlineCancel
+                className="cancelIcon"
+                size="20px"
+                onClick={() => {
+                  deleteTemplate(template.id);
+                }}
+              />
+              <S.Title>{template.keyword}</S.Title>
+              <S.Text>{template.text}</S.Text>
+              <S.Copy>복사하기 : 0</S.Copy>
+            </S.Item>
+          </S.ListItem>
+        );
+      })}
     </S.ListBox>
   );
 };
