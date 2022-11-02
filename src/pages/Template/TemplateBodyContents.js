@@ -42,7 +42,7 @@ const TemplateBodyContents = () => {
   }, []);
 
   // templates.shift();
-  console.log(templates);
+  // console.log(templates);
 
   const deleteTemplate = id => {
     db.collection('Templates')
@@ -57,7 +57,7 @@ const TemplateBodyContents = () => {
       });
   };
 
-  console.log(templates);
+  // console.log(templates);
 
   return (
     <S.ListBox>
