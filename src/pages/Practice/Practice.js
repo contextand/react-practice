@@ -1,9 +1,9 @@
 import React from 'react';
-import InputSample from './InputSample';
 import './Practice.css';
+import UserList from './UserList';
 
 const Practice = () => {
-  return <InputSample />;
+  return <UserList />;
 };
 
 export default Practice;
