@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
-const User = ({ user, onRemove, onToggle }) => {
+const User = React.memo(function User({ user, onRemove, onToggle }) {
   return (
     <div>
       <b
@@ -16,7 +16,7 @@ const User = ({ user, onRemove, onToggle }) => {
       <button onClick={() => onRemove(user.id)}>삭제</button>
     </div>
   );
-};
+});
 
 const UserList = ({ users, onRemove, onToggle }) => {
   return users.map(user => {
@@ -26,4 +26,4 @@ const UserList = ({ users, onRemove, onToggle }) => {
   });
 };
 
-export default UserList;
+export default React.memo(UserList);
