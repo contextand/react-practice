@@ -1,17 +1,28 @@
 import React from 'react';
 
-const User = ({ user }) => {
+const User = ({ user, onRemove, onToggle }) => {
   return (
-    <>
-      <div>유저이름 : {user.username}</div>
-      <div>이메일 : {user.email}</div>
-    </>
+    <div>
+      <b
+        style={{
+          cursor: 'pointer',
+          color: user.active ? 'green' : 'black',
+        }}
+        onClick={() => onToggle(user.id)}
+      >
+        {user.username}
+      </b>
+      <span>({user.email})</span>
+      <button onClick={() => onRemove(user.id)}>삭제</button>
+    </div>
   );
 };
 
-const UserList = ({ users }) => {
+const UserList = ({ users, onRemove, onToggle }) => {
   return users.map(user => {
-    return <User key={user.id} user={user} />;
+    return (
+      <User key={user.id} user={user} onRemove={onRemove} onToggle={onToggle} />
+    );
   });
 };
 

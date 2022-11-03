@@ -24,16 +24,19 @@ const Practice = () => {
       id: 1,
       username: 'velopert',
       email: 'public.velopert@gmail.com',
+      active: true,
     },
     {
       id: 2,
       username: 'tester',
       email: 'tester@example.com',
+      active: false,
     },
     {
       id: 3,
       username: 'liz',
       email: 'liz@example.com',
+      active: false,
     },
   ]);
 
@@ -44,13 +47,26 @@ const Practice = () => {
       username,
       email,
     };
-    setUsers([...users, user]);
+    setUsers(users.concat(user));
 
     setInputs({
       username: '',
       email: '',
     });
   };
+
+  const onRemove = id => {
+    setUsers(users.filter(user => user.id !== id));
+  };
+
+  const onToggle = id => {
+    setUsers(
+      users.map(user =>
+        user.id === id ? { ...user, active: !user.active } : user
+      )
+    );
+  };
+
   return (
     <>
       <CreateUser
@@ -59,7 +75,7 @@ const Practice = () => {
         onChange={onChange}
         onCreate={onCreate}
       />
-      <UserList users={users} />;
+      <UserList users={users} onRemove={onRemove} onToggle={onToggle} />;
     </>
   );
 };
